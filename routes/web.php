@@ -14,10 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ItemController::class, 'index'])->name('home');
+Route::get('/', [ItemController::class, 'home'])->name('home');
+
 Route::get('/about', function () {
     return view('guests.about');
 })->name('about');
+
 Route::get('/contacts', function () {
     return view('guests.contacts');
 })->name('contacts');
+
+Route::get('/items', [ItemController::class, 'index'])->name('guests.items.index');
+
+Route::get('/items/{item}', [ItemController::class, 'show'])->name('guests.items.show');
