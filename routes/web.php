@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\Guests\ItemController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,4 @@ Route::get('/contacts', function () {
 Route::get('/items', [ItemController::class, 'index'])->name('guests.items.index');
 
 Route::get('/items/{item}', [ItemController::class, 'show'])->name('guests.items.show');
+Route::resource('/characters', CharacterController::class);
