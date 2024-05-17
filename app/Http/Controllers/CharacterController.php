@@ -37,7 +37,7 @@ class CharacterController extends Controller
         $character->defense = $data['defense'];
         $character->speed = $data['speed'];
         $character->save();
-        return to_route('character.index');
+        return to_route('characters.index');
     }
 
     /**
