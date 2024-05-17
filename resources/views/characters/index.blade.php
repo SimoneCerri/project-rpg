@@ -29,7 +29,8 @@
                             <td scope="row">{{ $character->defense }}</td>
                             <td scope="row">{{ $character->speed }}</td>
                             <td scope="row">
-                                <a href="{{ route('characters.show', $character) }}">View</a>/Edit/Delete
+                                <a href="{{ route('characters.show', $character) }}">View</a>
+                                <a href="{{ route('characters.edit', $character) }}">Edit</a>/Delete
                             </td>
 
                         </tr>

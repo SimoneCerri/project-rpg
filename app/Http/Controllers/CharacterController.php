@@ -53,7 +53,9 @@ class CharacterController extends Controller
      */
     public function update(Request $request, Character $character)
     {
-        //
+
+        $character->update($request->all());
+        return to_route('characters.show', compact('character'));
     }
 
     /**

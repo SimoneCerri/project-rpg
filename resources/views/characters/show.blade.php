@@ -19,5 +19,7 @@
                 </div>
             </div>
         </div>
+
+        <a href="{{ route('characters.index') }} " class="btn btn-primary">Previous</a>
     </div>
 @endsection
