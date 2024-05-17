@@ -41,6 +41,6 @@
 
             </table>
         </div>
-
+        <a href="{{ route('characters.create') }}" class="btn btn-secondary">Add a new Character</a>
     </div>
 @endsection
