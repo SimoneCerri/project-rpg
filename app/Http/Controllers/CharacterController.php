@@ -30,7 +30,6 @@ class CharacterController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
         $character = new Character();
         $character->name = $data['name'];
         $character->description = $data['description'];
@@ -38,12 +37,6 @@ class CharacterController extends Controller
         $character->defense = $data['defense'];
         $character->speed = $data['speed'];
         $character->save();
-        /*     $validate_date = $request->validate([
-
-            ]); */
-
-        //Character::create($validate_date);
-
         return to_route('characters.index');
     }
 
