@@ -12,7 +12,7 @@ class CharacterController extends Controller
      */
     public function index()
     {
-$characters=Character::all();
+        $characters = Character::all();
         return view('characters.index', compact('characters'));
     }
 
@@ -37,7 +37,7 @@ $characters=Character::all();
      */
     public function show(Character $character)
     {
-
+        return view('characters.show', compact('character'));
     }
 
     /**
@@ -45,7 +45,7 @@ $characters=Character::all();
      */
     public function edit(Character $character)
     {
-        //
+        return view('characters.edit', compact('character'));
     }
 
     /**
