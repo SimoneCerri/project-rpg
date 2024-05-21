@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container">
-        @include('partial.validate')
+        @include('partials.validate')
         <form action="{{ route('characters.store') }}" method="post">
             @csrf
             <div class="mb-3">

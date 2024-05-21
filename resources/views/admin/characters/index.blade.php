@@ -8,8 +8,8 @@
         <a href="{{ route('characters.create') }}" class="btn btn-primary mb-2">Add a new Character</a>
 
 
-        @include('partial.session')
-        @include('partial.validate')
+        @include('partials.session')
+        @include('partials.validate')
 
 
 
