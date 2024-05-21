@@ -14,7 +14,7 @@ class ItemsSeeder extends Seeder
     public function run(): void
     {
         
-        $items = json_decode(file_get_contents('config\db.json'), true);
+        $items = json_decode(file_get_contents('config/db.json'), true);
 
         foreach ($items as $item) {
             $newItem = New Item();
@@ -26,7 +26,6 @@ class ItemsSeeder extends Seeder
             $newItem->cost= $item['cost'];
             $newItem->damage_dice= $item['damage_dice'];
             $newItem->save();
-
         }
     }
 }
