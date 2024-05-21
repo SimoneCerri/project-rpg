@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 @section('content')
     <div class="container">
         <form action="{{ route('characters.store') }}" method="post">
@@ -27,7 +27,7 @@
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" name="description" id="description" rows="3">{{old('description')}}/></textarea>
+                <textarea class="form-control" name="description" id="description" rows="3">{{ old('description') }}/></textarea>
             </div>
 
             <button class="btn btn-primary" type="submit">

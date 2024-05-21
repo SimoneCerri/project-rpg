@@ -14,7 +14,7 @@ class CharacterController extends Controller
     {
         $characters = Character::all();
 
-        return view('characters.index', compact('characters'));
+        return view('admin.characters.index', compact('characters'));
     }
 
     /**
@@ -22,7 +22,7 @@ class CharacterController extends Controller
      */
     public function create()
     {
-        return view('characters.create');
+        return view('admin.characters.create');
     }
 
     /**
@@ -38,7 +38,7 @@ class CharacterController extends Controller
         $character->defense = $data['defense'];
         $character->speed = $data['speed'];
         $character->save();
-        return to_route('characters.index');
+        return to_route('admin.characters.index');
     }
 
     /**
@@ -46,7 +46,7 @@ class CharacterController extends Controller
      */
     public function show(Character $character)
     {
-        return view('characters.show', compact('character'));
+        return view('admin.characters.show', compact('character'));
     }
 
     /**
@@ -54,7 +54,7 @@ class CharacterController extends Controller
      */
     public function edit(Character $character)
     {
-        return view('characters.edit', compact('character'));
+        return view('admin.characters.edit', compact('character'));
     }
 
     /**
@@ -64,7 +64,7 @@ class CharacterController extends Controller
     {
 
         $character->update($request->all());
-        return to_route('characters.show', compact('character'));
+        return to_route('admin.characters.show', compact('character'));
     }
 
     /**
@@ -73,7 +73,6 @@ class CharacterController extends Controller
     public function destroy(Character $character)
     {
         $character->delete();
-        return to_route('characters.index');
-
+        return to_route('admin.characters.index');
     }
 }
