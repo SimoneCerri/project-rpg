@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guests\ItemController;
 use App\Http\Controllers\CharacterController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,4 +47,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::middleware(['auth', 'verified'])
+    ->name('admin.')
+    ->prefix('admin')
+    ->group(function () {
+        //all route here that needs to be protected by our auth system
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    });
+
+require __DIR__ . '/auth.php';
