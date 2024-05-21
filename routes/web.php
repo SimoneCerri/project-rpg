@@ -21,6 +21,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware(['auth', 'verified'])
+    ->name('admin.')
+    ->prefix('admin')
+    ->group(function () {
+        //all route here that needs to be protected by our auth system
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('characters', CharacterController::class);
+    });
+
 Route::get('/', [ItemController::class, 'home'])->name('home');
 
 Route::get('/about', function () {
@@ -47,12 +56,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'verified'])
-    ->name('admin.')
-    ->prefix('admin')
-    ->group(function () {
-        //all route here that needs to be protected by our auth system
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    });
+
 
 require __DIR__ . '/auth.php';
