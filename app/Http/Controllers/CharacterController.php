@@ -13,6 +13,7 @@ class CharacterController extends Controller
     public function index()
     {
         $characters = Character::all();
+
         return view('characters.index', compact('characters'));
     }
 
@@ -71,6 +72,8 @@ class CharacterController extends Controller
      */
     public function destroy(Character $character)
     {
-        //
+        $character->delete();
+        return to_route('characters.index');
+
     }
 }
