@@ -4,10 +4,20 @@
 @endsection
 
 @section('content')
-    <div class="table-responsive">
-        <div class="container">
+    <div class="container p-2">
+        <a href="{{ route('characters.create') }}" class="btn btn-primary mb-2">Add a new Character</a>
+
+
+        @include('partial.session')
+        @include('partial.validate')
+
+
+
+        <div class="table-responsive">
             <table class="table table-primary">
+
                 <thead>
+
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
@@ -80,6 +90,7 @@
 
             </table>
         </div>
-        <a href="{{ route('characters.create') }}" class="btn btn-secondary">Add a new Character</a>
+
+        {{ $characters->links('pagination::bootstrap-5') }}
     </div>
 @endsection

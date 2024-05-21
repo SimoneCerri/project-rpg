@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+        @include('partial.validate')
         <form action="{{ route('characters.update', $character) }}" method="post">
             @csrf
             @method('PUT')
