@@ -12,9 +12,11 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        $characters = Character::all();
+        //$characters = Character::all();
 
-        return view('admin.characters.index', compact('characters'));
+        //return view('admin.characters.index', compact('characters'));
+        return view('admin.characters.index', ['characters' => Character::orderByDesc('id')->paginate(6)]);
+
     }
 
     /**
@@ -38,7 +40,7 @@ class CharacterController extends Controller
         $character->defense = $data['defense'];
         $character->speed = $data['speed'];
         $character->save();
-        return to_route('admin.characters.index');
+        return to_route('admin.characters.index')->with('message', "New project it's created!");
     }
 
     /**
@@ -64,7 +66,7 @@ class CharacterController extends Controller
     {
 
         $character->update($request->all());
-        return to_route('admin.characters.show', compact('character'));
+        return to_route('admin.characters.index')->with('message', "$character->name updated!");
     }
 
     /**
@@ -73,6 +75,6 @@ class CharacterController extends Controller
     public function destroy(Character $character)
     {
         $character->delete();
-        return to_route('admin.characters.index');
+        return to_route('admin.characters.index')->with('message', "$character->name deleted!");
     }
 }
