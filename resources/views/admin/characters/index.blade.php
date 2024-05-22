@@ -9,7 +9,6 @@
 
 
         @include('partials.session')
-        @include('partials.validate')
 
 
 
