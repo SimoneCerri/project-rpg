@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <h2>Edit Character</h2>
-        @include('partials.validate')
+        {{-- @include('partials.validate') --}}
         <form action="{{ route('characters.update', $character) }}" method="post">
             @csrf
             @method('PUT')
