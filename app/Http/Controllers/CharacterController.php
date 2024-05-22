@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Character;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCharacterRequest;
+use App\Http\Requests\UpdateCharacterRequest;
 
 class CharacterController extends Controller
 {
@@ -16,7 +18,6 @@ class CharacterController extends Controller
 
         //return view('admin.characters.index', compact('characters'));
         return view('admin.characters.index', ['characters' => Character::orderByDesc('id')->paginate(6)]);
-
     }
 
     /**
@@ -30,17 +31,12 @@ class CharacterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCharacterRequest $request)
     {
-        $data = $request->all();
-        $character = new Character();
-        $character->name = $data['name'];
-        $character->description = $data['description'];
-        $character->attack = $data['attack'];
-        $character->defense = $data['defense'];
-        $character->speed = $data['speed'];
-        $character->save();
-        return to_route('admin.characters.index')->with('message', "New project it's created!");
+        $val_data = $request->validated();
+        $name = $val_data['name'];
+        Character::create($val_data);
+        return to_route('admin.characters.index')->with('message', "New project it's created: $name");
     }
 
     /**
@@ -62,10 +58,10 @@ class CharacterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Character $character)
+    public function update(UpdateCharacterRequest $request, Character $character)
     {
 
-        $character->update($request->all());
+        $character->update($request->validated());
         return to_route('admin.characters.index')->with('message', "$character->name updated!");
     }
 
