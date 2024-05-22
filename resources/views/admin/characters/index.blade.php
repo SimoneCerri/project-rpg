@@ -10,7 +10,7 @@
 
         @include('partials.session')
 
-
+        @include('partials.validate')
 
         <div class="table-responsive">
             <table class="table table-primary">
