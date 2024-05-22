@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->id();
-            $table->string('name',20);
+            $table->string('name',50);
             $table->text('description')->nullable();
             $table->string('attack', 20)->nullable();
             $table->string('defense', 20)->nullable();
