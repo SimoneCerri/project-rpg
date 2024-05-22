@@ -17,7 +17,7 @@ class CharactersSeeder extends Seeder
     {
         for ($i = 0; $i < 10; $i++) {
             $character = new Character();
-            $character->name = $faker->name();
+            $character->name = $faker->name(10);
             $character->description = $faker->text(200);
             $character->attack = rand(10, 50);
             $character->defense = rand(10, 50);

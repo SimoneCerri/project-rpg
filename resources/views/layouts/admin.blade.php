@@ -19,7 +19,6 @@
 </head>
 
 <body>
-
     <header>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -49,7 +48,13 @@
                             <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.characters.index') }}">{{ __('Dashboard') }}</a>
+                            <a class="nav-link" href="{{ url('/admin') }}">{{ __('Dashboard') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.characters.index') }}">{{ __('Characters') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('guests.items.index') }}">{{ __('Items') }}</a>
                         </li>
                     </ul>
 

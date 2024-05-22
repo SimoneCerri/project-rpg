@@ -18,7 +18,6 @@
 </head>
 
 <body>
-
     <header>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -50,9 +49,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('guests.items.index') }}">{{ __('Items') }}</a>
                         </li>
-
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
