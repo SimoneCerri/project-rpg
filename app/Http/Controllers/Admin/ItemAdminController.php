@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
+use App\Models\Item;
 
 class ItemAdminController extends Controller
 {
@@ -14,6 +15,8 @@ class ItemAdminController extends Controller
      */
     public function index()
     {
+
+        return view('admin.items.index', ['items' => Item::orderByDesc('id')->paginate(6)]);
     }
 
     /**
