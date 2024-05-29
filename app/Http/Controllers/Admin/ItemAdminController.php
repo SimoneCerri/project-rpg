@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use App\Models\Item;
+use Illuminate\Support\Str;
 
 class ItemAdminController extends Controller
 {
@@ -24,7 +25,7 @@ class ItemAdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.items.create');
     }
 
     /**
@@ -32,7 +33,21 @@ class ItemAdminController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
-        //
+        $val_data = $request->validated();
+        $val_data['name'] = Str::of($val_data['name'])->trim()->headline();
+        $val_data['slug'] = Str::slug($val_data['name'], '-');
+        $val_data['type'] = "Weapons";
+        if ($request->has('category')) {
+            $val_data['category'] = $val_data['category'] . ' Weapons';
+        }
+        if ($request->has('weight')) {
+            $val_data['weight'] = $val_data['weight'] . ' lb.';
+        }
+
+
+        Item::create($val_data);
+
+        return to_route('admin.items.index');
     }
 
     /**
@@ -46,9 +61,9 @@ class ItemAdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Item $item)
     {
-        //
+        return view('admin.items.edit', compact('item'));
     }
 
     /**
