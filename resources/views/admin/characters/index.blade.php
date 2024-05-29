@@ -20,6 +20,7 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Type</th>
                         <th scope="col">Description</th>
                         <th scope="col">Attack</th>
                         <th scope="col">Defense</th>
@@ -33,6 +34,7 @@
                         <tr class="">
                             <td scope="row">{{ $character->id }}</td>
                             <td scope="row">{{ $character->name }}</td>
+                            <td scope="row">{{ $character->type ? $character->type->name : 'n/a' }}</td>
                             <td scope="row">{{ $character->description }}</td>
                             <td scope="row">{{ $character->attack }}</td>
                             <td scope="row">{{ $character->defense }}</td>

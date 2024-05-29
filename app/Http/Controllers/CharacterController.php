@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCharacterRequest;
+use App\Http\Requests\UpdateCharacterRequest;
 use App\Models\Character;
-use Illuminate\Http\Request;
+use App\Models\Type;
+use Illuminate\Support\Str;
 
 class CharacterController extends Controller
 {
@@ -12,9 +15,6 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        //$characters = Character::all();
-
-        //return view('admin.characters.index', compact('characters'));
         return view('admin.characters.index', ['characters' => Character::orderByDesc('id')->paginate(6)]);
 
     }
@@ -24,22 +24,33 @@ class CharacterController extends Controller
      */
     public function create()
     {
-        return view('admin.characters.create');
+        $types = Type::all();
+
+        return view('admin.characters.create', compact('types'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCharacterRequest $request)
     {
-        $data = $request->all();
-        $character = new Character();
-        $character->name = $data['name'];
-        $character->description = $data['description'];
-        $character->attack = $data['attack'];
-        $character->defense = $data['defense'];
-        $character->speed = $data['speed'];
-        $character->save();
+        $validated_data = $request->validated();
+
+        $validated_data['slug'] = Str::slug($validated_data['name'], '-');
+
+        //dd($validated_data);
+        /*  $data = $request->all(); */
+
+        /*  $character = new Character();
+         $character->name = $data['name'];
+         $character->description = $data['description'];
+         $character->attack = $data['attack'];
+         $character->defense = $data['defense'];
+         $character->speed = $data['speed'];
+         $character->save(); */
+
+        Character::create($validated_data);
+
         return to_route('admin.characters.index')->with('message', "New project it's created!");
     }
 
@@ -48,6 +59,7 @@ class CharacterController extends Controller
      */
     public function show(Character $character)
     {
+        // $types = Type::all();
         return view('admin.characters.show', compact('character'));
     }
 
@@ -56,16 +68,25 @@ class CharacterController extends Controller
      */
     public function edit(Character $character)
     {
-        return view('admin.characters.edit', compact('character'));
+        $types = Type::all();
+
+        //dd($types);
+        return view('admin.characters.edit', compact('character', 'types'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Character $character)
+    public function update(UpdateCharacterRequest $request, Character $character)
     {
+        $validated_data = $request->validated();
 
-        $character->update($request->all());
+        $validated_data['slug'] = Str::slug($validated_data['name'], '-');
+
+        // dd($validated_data);
+
+        $character->update($validated_data);
+
         return to_route('admin.characters.index')->with('message', "$character->name updated!");
     }
 
@@ -75,6 +96,7 @@ class CharacterController extends Controller
     public function destroy(Character $character)
     {
         $character->delete();
+
         return to_route('admin.characters.index')->with('message', "$character->name deleted!");
     }
 }

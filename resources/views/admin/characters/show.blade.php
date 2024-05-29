@@ -6,6 +6,7 @@
             <div class="col">
                 <div class="card">
                     <h3 class="card-title">{{ $character->name }}</h3>
+                    <h5 class="card-subtitle">{{ $character->type ? $character->type->name : 'N/A' }} </h5>
                     <div class="card-body">
                         {{ $character->description }}
                     </div>
