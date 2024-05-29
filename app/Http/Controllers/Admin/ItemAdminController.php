@@ -81,7 +81,7 @@ class ItemAdminController extends Controller
             $val_data['category'] = $val_data['category'] . ' Weapons';
         }
         if ($request->has('weight')) {
-            $item->weight = $val_data['weight'] . ' lb.';
+            $val_data['weight'] = $val_data['weight'] . ' lb.';
         }
 
 

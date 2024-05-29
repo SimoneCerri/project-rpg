@@ -10,7 +10,7 @@ class Item extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug', 'type', 'category', 'weigth', 'cost', 'damage_dice'];
+    protected $fillable = ['name', 'slug', 'type', 'category', 'weight', 'cost', 'damage_dice'];
 
     /**
      * The characters that belong to the Item
