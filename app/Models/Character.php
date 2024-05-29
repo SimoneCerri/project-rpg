@@ -8,14 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Character extends Model
 {
-    protected $fillable = ['name', 'description', 'attack', 'defense', 'speed'];
-    use HasFactory;
+    protected $fillable = ['name', 'type_id', 'description', 'attack', 'defense', 'speed'];
 
+    use HasFactory;
 
     /**
      * Get the type that owns the Character
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function type(): BelongsTo
     {

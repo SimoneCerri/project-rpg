@@ -10,10 +10,10 @@ class Type extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slug', 'desc'];
+
     /**
      * Get all of the characters for the Type
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function characters(): HasMany
     {
