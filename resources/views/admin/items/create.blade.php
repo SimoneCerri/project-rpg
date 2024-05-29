@@ -2,6 +2,14 @@
 @section('content')
     <div class="container">
         @include('partials.validate')
+
+        <div class="d-flex align-items-center justify-content-between">
+            <h1>Add new Item</h1>
+            <a href="{{ route('admin.items.index') }}" class="btn btn-dark">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+        </div>
+
         <form action="{{ route('admin.items.store') }}" method="post">
             @csrf
             <div class="mb-3">
@@ -60,7 +68,7 @@
             <button class="btn btn-primary" type="submit">
                 Create
             </button>
-            <a href="{{ route('admin.items.index') }}" class="btn btn-secondary">Previous</a>
+
         </form>
     </div>
 @endsection

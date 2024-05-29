@@ -1,7 +1,16 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container">
+
         @include('partials.validate')
+
+        <div class="d-flex align-items-center justify-content-between">
+            <h1>Edit Item</h1>
+            <a href="{{ route('admin.items.index') }}" class="btn btn-dark">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+        </div>
+
         <form action="{{ route('admin.items.update', $item) }}" method="post">
             @csrf
 
@@ -65,9 +74,8 @@
 
 
             <button class="btn btn-primary" type="submit">
-                Create
+                Edit Item
             </button>
-            <a href="{{ route('admin.items.index') }}" class="btn btn-secondary">Previous</a>
         </form>
     </div>
 @endsection

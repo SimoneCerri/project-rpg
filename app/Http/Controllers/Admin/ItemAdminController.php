@@ -44,10 +44,10 @@ class ItemAdminController extends Controller
             $val_data['weight'] = $val_data['weight'] . ' lb.';
         }
 
-
+        $name = $val_data['name'];
         Item::create($val_data);
 
-        return to_route('admin.items.index');
+        return to_route('admin.items.index')->with('message', "Item: $name created!");
     }
 
     /**
@@ -72,17 +72,31 @@ class ItemAdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateItemRequest $request, string $id)
+    public function update(UpdateItemRequest $request, Item $item)
     {
         $val_data = $request->validated();
-        dd($val_data);
+        $val_data['name'] = Str::of($val_data['name'])->trim()->headline();
+        $val_data['slug'] = Str::slug($val_data['name'], '-');
+        if ($request->has('category')) {
+            $val_data['category'] = $val_data['category'] . ' Weapons';
+        }
+        if ($request->has('weight')) {
+            $item->weight = $val_data['weight'] . ' lb.';
+        }
+
+
+        $item->update($val_data);
+
+        return to_route('admin.items.index')->with('message', "Item: $item->name updated!");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Item $item)
     {
-        //
+        $item->delete();
+
+        return to_route('admin.items.index')->with('message', "Item: $item->name delete!");
     }
 }

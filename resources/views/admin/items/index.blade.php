@@ -5,7 +5,10 @@
 
 @section('content')
     <div class="container p-2">
-        <a href="{{ route('admin.items.create') }}" class="btn btn-primary mb-2">Add a new Character</a>
+        <div class="d-flex align-items-center justify-content-between py-4">
+            <h2>All Items</h2>
+            <a href="{{ route('characters.create') }}" class="btn btn-primary mb-2">Add a new Item</a>
+        </div>
 
 
         @include('partials.session')
