@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guests\ItemController;
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\TypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::middleware(['auth', 'verified'])
         //all route here that needs to be protected by our auth system
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('characters', CharacterController::class);
+        Route::resource('types', TypeController::class);
     });
 
 Route::get('/', [ItemController::class, 'home'])->name('home');
