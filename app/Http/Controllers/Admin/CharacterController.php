@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreCharacterRequest;
 use App\Http\Requests\UpdateCharacterRequest;
 use App\Models\Character;
 use App\Models\Type;
 use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
 
 class CharacterController extends Controller
 {
@@ -16,7 +17,6 @@ class CharacterController extends Controller
     public function index()
     {
         return view('admin.characters.index', ['characters' => Character::orderByDesc('id')->paginate(6)]);
-
     }
 
     /**
