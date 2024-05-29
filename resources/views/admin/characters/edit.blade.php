@@ -18,7 +18,7 @@
                     <option selected disabled>Select one</option>
                     @foreach ($types as $type)
                         <option value="{{ $type->id }}"
-                            {{ $type->id == old('type_id', $character->type->id) ? 'selected' : '' }}>
+                            @if ($type->id !== null) {{ $character->type == old('type_id', $character->type->id) ? 'selected' : '' }}> @endif
                             {{ $type->name }} </option>
                     @endforeach
                 </select>
