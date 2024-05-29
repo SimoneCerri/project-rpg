@@ -47,6 +47,8 @@
             </div>
             <div class="col">
                 <h2>All Items</h2>
+
+                @include('partials.validate')
                 <div class="table-responsive">
                     <table class="table table-primary">
 
