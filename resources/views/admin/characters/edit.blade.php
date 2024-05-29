@@ -16,11 +16,18 @@
                 <label for="type_id" class="form-label">Types</label>
                 <select class="form-select" name="type_id" id="type_id">
                     <option selected disabled>Select one</option>
-                    @foreach ($types as $type)
+                    {{--    @foreach ($types as $type)
                         <option value="{{ $type->id }}"
                             {{ $type->id == old('type_id', $character->type->id) ? 'selected' : '' }}>
                             {{ $type->name }} </option>
                     @endforeach
+ --}}
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}"
+                            {{ $type->id == old('type_id', $character->type_id) ? 'selected' : '' }}>
+                            {{ $type->name }}</option>
+                    @endforeach
+
                 </select>
             </div>
 
