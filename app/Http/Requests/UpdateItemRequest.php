@@ -22,7 +22,11 @@ class UpdateItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|max:30|min:3',
+            'category' => 'nullable',
+            'weight' => 'numeric|nullable',
+            'cost' => 'nullable',
+            'damage_dice' => 'nullable'
         ];
     }
 }

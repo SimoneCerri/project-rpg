@@ -63,6 +63,9 @@ class ItemAdminController extends Controller
      */
     public function edit(Item $item)
     {
+        $item['category'] = Str::of($item['category'])->before(' Weapons');
+        $item['weight'] = Str::of($item['weight'])->before(' lb.');
+        // dd($item);
         return view('admin.items.edit', compact('item'));
     }
 
@@ -71,7 +74,8 @@ class ItemAdminController extends Controller
      */
     public function update(UpdateItemRequest $request, string $id)
     {
-        //
+        $val_data = $request->validated();
+        dd($val_data);
     }
 
     /**
