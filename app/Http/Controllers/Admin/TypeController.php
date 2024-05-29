@@ -43,13 +43,6 @@ class TypeController extends Controller
         return view('admin.types.show', compact('type'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Type $type)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
