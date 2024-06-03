@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         @include('partials.validate')
-        <form action="{{ route('characters.store') }}" method="post">
+        <form action="{{ route('characters.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name </label>
@@ -19,6 +19,14 @@
                     @endforeach
                 </select>
             </div>
+
+            <div class="mb-3">
+                <label for="cover_image" class="form-label">Choose file</label>
+                <input type="file" class="form-control @error('cover_image') is-invalid @enderror" name="cover_image"
+                    id="cover_image" placeholder="" aria-describedby="characterHelper" />
+                <div id="characterHelper" class="form-text">Type your image of charcter</div>
+            </div>
+
 
             <div class="mb-3">
                 <label for="attack" class="form-label">Attack </label>

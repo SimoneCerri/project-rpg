@@ -7,7 +7,7 @@
     <div class="container p-2">
         <div class="d-flex align-items-center justify-content-between py-4">
             <h2>All Items</h2>
-            <a href="{{ route('characters.create') }}" class="btn btn-primary mb-2">Add a new Item</a>
+            <a href="{{ route('admin.items.create') }}" class="btn btn-primary mb-2">Add a new Item</a>
         </div>
 
 
@@ -24,6 +24,8 @@
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Slug</th>
+                        <th scope="col">cover_image</th>
+
                         <th scope="col">Type</th>
                         <th scope="col">Category</th>
                         <th scope="col">Weight</th>
@@ -39,6 +41,15 @@
                             <td scope="row">{{ $item->id }}</td>
                             <td scope="row">{{ $item->name }}</td>
                             <td scope="row">{{ $item->slug }}</td>
+                            <td scope="row">
+                                @if (Str::contains($item->cover_image, ['https://', 'http://']))
+                                    <img width="140" src="{{ $item->cover_image }}"
+                                        alt="Image of item: {{ $item->title }}">
+                                @else
+                                    <img width="140" src="{{ asset('storage/' . $item->cover_image) }}"
+                                        alt="{{ $item->title ? "Image of item: $item->title" : "don't image of the project" }}">
+                                @endif
+                            </td>
                             <td scope="row">{{ $item->type }}</td>
                             <td scope="row">{{ $item->category }}</td>
                             <td scope="row">{{ $item->weight }}</td>

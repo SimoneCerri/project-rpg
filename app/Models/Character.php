@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Character extends Model
 {
-    protected $fillable = ['name', 'type_id', 'description', 'attack', 'defense', 'speed'];
+    protected $fillable = ['name', 'type_id', 'description', 'attack', 'defense', 'speed', 'cover_image'];
 
     use HasFactory;
 
