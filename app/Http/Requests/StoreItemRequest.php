@@ -24,6 +24,7 @@ class StoreItemRequest extends FormRequest
         return [
             'name' => 'required|max:30|min:3',
             'category' => 'nullable',
+            'cover_image' => 'image|nullable',
             'weight' => 'numeric|nullable',
             'cost' => 'nullable',
             'damage_dice' => 'nullable'

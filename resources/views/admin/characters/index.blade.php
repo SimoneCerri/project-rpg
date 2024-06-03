@@ -25,6 +25,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Type</th>
+                        <th scope="col">Image</th>
                         <th scope="col">Description</th>
                         <th scope="col">Attack</th>
                         <th scope="col">Defense</th>
@@ -39,6 +40,15 @@
                             <td scope="row">{{ $character->id }}</td>
                             <td scope="row">{{ $character->name }}</td>
                             <td scope="row">{{ $character->type ? $character->type->name : 'n/a' }}</td>
+                            <td scope="row">
+                                @if (Str::contains($character->cover_image, ['https://', 'http://']))
+                                    <img width="140" src="{{ $character->cover_image }}"
+                                        alt="Image of character: {{ $character->title }}">
+                                @else
+                                    <img width="140" src="{{ asset('storage/' . $character->cover_image) }}"
+                                        alt="{{ $character->title ? "Image of character: $character->title" : "don't image of the project" }}">
+                                @endif
+                            </td>
                             <td scope="row">{{ $character->description }}</td>
                             <td scope="row">{{ $character->attack }}</td>
                             <td scope="row">{{ $character->defense }}</td>

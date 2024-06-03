@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StoreCharacterRequest;
 use App\Http\Requests\UpdateCharacterRequest;
 use App\Models\Character;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Type;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
@@ -37,6 +38,10 @@ class CharacterController extends Controller
         $validated_data = $request->validated();
 
         $validated_data['slug'] = Str::slug($validated_data['name'], '-');
+        if ($request->has('cover_image')) {
+            $validated_data['cover_image'] = Storage::disk('public')->put('uploads/images', $validated_data['cover_image']);
+        }
+
 
         //dd($validated_data);
         /*  $data = $request->all(); */
@@ -51,7 +56,7 @@ class CharacterController extends Controller
 
         Character::create($validated_data);
 
-        return to_route('admin.characters.index')->with('message', "New project it's created!");
+        return to_route('admin.characters.index')->with('message', "New character it's created!");
     }
 
     /**
@@ -81,9 +86,18 @@ class CharacterController extends Controller
     {
         $validated_data = $request->validated();
 
+
         $validated_data['slug'] = Str::slug($validated_data['name'], '-');
 
-        // dd($validated_data);
+        if ($request->has('cover_image')) {
+
+            if ($character->cover_image) {
+                Storage::disk('public')->delete($character->cover_image);
+            }
+            $validated_data['cover_image'] = Storage::disk('public')->put('uploads/images', $validated_data['cover_image']);
+        }
+
+
 
         $character->update($validated_data);
 
@@ -95,6 +109,9 @@ class CharacterController extends Controller
      */
     public function destroy(Character $character)
     {
+        if ($character->cover_image) {
+            Storage::disk('public')->delete($character->cover_image);
+        }
         $character->delete();
 
         return to_route('admin.characters.index')->with('message', "$character->name deleted!");

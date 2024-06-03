@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name', 50);
             $table->string('slug', 70);
             $table->string('type', 30)->nullable();
+            $table->string('cover_image')->nullable();
             $table->string('category', 30)->nullable();
             $table->string('weight', 30)->nullable();
             $table->string('cost', 30)->nullable();

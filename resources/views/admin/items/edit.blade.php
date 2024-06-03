@@ -11,7 +11,7 @@
             </a>
         </div>
 
-        <form action="{{ route('admin.items.update', $item) }}" method="post">
+        <form action="{{ route('admin.items.update', $item) }}" method="post" enctype="multipart/form-data">
             @csrf
 
             @method('PUT')
@@ -42,6 +42,18 @@
                     </option>
                 </select>
             </div>
+
+            <div class="mb-3">
+                <label for="cover_image" class="form-label">Choose file</label>
+                <input type="file" class="form-control @error('cover_image') is-invalid @enderror" name="cover_image"
+                    id="cover_image" placeholder="" aria-describedby="characterHelper"
+                    value="{{ old('cover_image', $item->cover_image) }}" />
+                <div id="characterHelper" class="form-text">Type your image of charcter</div>
+                @error('cover_image')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
             <div class="mb-3">
                 <label for="weight" class="form-label">Weight</label>
                 <input type="number" class="form-control @error('weight') is-invalid @enderror" name="weight"
