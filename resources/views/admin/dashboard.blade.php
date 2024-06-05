@@ -7,7 +7,7 @@
                 {{ __('Dashboard') }}
             </h2>
 
-            <a class="btn btn-primary" href="{{ route('admin.characters.index') }}">Characters manager</a>
+
         </div>
 
         <div class="row justify-content-center">
@@ -23,6 +23,13 @@
                         @endif
 
                         {{ __('You are logged in!') }}
+                        <div class="continer_btn">
+                            <a class="btn btn-primary" href="{{ route('admin.characters.index') }}">Characters manager</a>
+                            <a href="{{ route('admin.types.index') }}" class="btn btn-dark">Types manager</a>
+                            <a href="{{ route('admin.items.index') }}" class="btn btn-warning">Items manager</a>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
