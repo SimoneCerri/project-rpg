@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CharacterController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ItemAdminController;
 use App\Http\Controllers\Admin\TypeController;
+use App\Models\Lead;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
+Route::get('/mailable', function () {
+    $lead = Lead::find(1);
+    return new App\Mail\NewLeadMessageMd($lead);
+    // return new App\Mail\InvoicePaid($invoice);
+});
 
 require __DIR__ . '/auth.php';

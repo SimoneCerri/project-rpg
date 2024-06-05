@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\CharacterController;
+use App\Http\Controllers\API\LeadController;
 use Illuminate\Database\Query\IndexHint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('characters', [CharacterController::class, 'index']);
+
+Route::post('contacts', [LeadController::class, 'store']);
